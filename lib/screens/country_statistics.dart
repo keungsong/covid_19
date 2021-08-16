@@ -124,9 +124,15 @@ class CountryStatistics extends StatelessWidget {
     List<CountrySummaryModel> summaryList,
   ) {
     List<TimeSeriesCases> confirmedData = [];
+    List<TimeSeriesCases> activeData = [];
+     List<TimeSeriesCases> recoveredData = [];
+      List<TimeSeriesCases> deathData = [];
 
     for (var item in summaryList) {
       confirmedData.add(TimeSeriesCases(item.date, item.confirmed));
+      activeData.add(TimeSeriesCases(item.date, item.active));
+      recoveredData.add(TimeSeriesCases(item.date, item.recovered));
+      deathData.add(TimeSeriesCases(item.date, item.death));
     }
 
     return [
@@ -136,6 +142,27 @@ class CountryStatistics extends StatelessWidget {
         domainFn: (TimeSeriesCases cases, _) => cases.time,
         measureFn: (TimeSeriesCases cases, _) => cases.cases,
         data: confirmedData,
+      ),
+      new charts.Series<TimeSeriesCases, DateTime>(
+        id: 'Active',
+        colorFn: (_, __) => charts.ColorUtil.fromDartColor(kActiveColor),
+        domainFn: (TimeSeriesCases cases, _) => cases.time,
+        measureFn: (TimeSeriesCases cases, _) => cases.cases,
+        data: activeData,
+      ),
+new charts.Series<TimeSeriesCases, DateTime>(
+        id: 'Recovered',
+        colorFn: (_, __) => charts.ColorUtil.fromDartColor(kRecoveredColor),
+        domainFn: (TimeSeriesCases cases, _) => cases.time,
+        measureFn: (TimeSeriesCases cases, _) => cases.cases,
+        data: recoveredData,
+      ),
+      new charts.Series<TimeSeriesCases, DateTime>(
+        id: 'Deaths',
+        colorFn: (_, __) => charts.ColorUtil.fromDartColor(kDeathColor),
+        domainFn: (TimeSeriesCases cases, _) => cases.time,
+        measureFn: (TimeSeriesCases cases, _) => cases.cases,
+        data: deathData,
       )
     ];
   }

@@ -1,5 +1,6 @@
 import 'package:covid_19/models/country.dart';
 import 'package:covid_19/models/country_summary.dart';
+import 'package:covid_19/screens/country_loading.dart';
 import 'package:covid_19/screens/country_statistics.dart';
 import 'package:covid_19/services/covid_services.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +22,8 @@ class _CountryState extends State<Country> {
   void initState() {
     super.initState();
     countryList = covidServices.getCountryList();
-    summaryList = covidServices.getCountrySummary("lao-pdr");
-    this._textEditingController.text = "Lao PDR";
+    summaryList = covidServices.getCountrySummary("United States of America");
+    this._textEditingController.text = "united-states";
   }
 
   List<String> _getSuggestions(List<CountryModel> list, String query) {
@@ -46,9 +47,7 @@ class _CountryState extends State<Country> {
             );
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
-              return Center(
-                child: Text("Loading..."),
-              );
+              return CountryLoading(inputTextLoading: true);
             default:
               return !snapshot.hasData
                   ? Center(
@@ -129,9 +128,7 @@ class _CountryState extends State<Country> {
                                 );
                               switch (snapshot.connectionState) {
                                 case ConnectionState.waiting:
-                                  return Center(
-                                    child: Text("Loading..."),
-                                  );
+                                  return CountryLoading(inputTextLoading: false);
                                 default:
                                   return !snapshot.hasData
                                       ? Center(

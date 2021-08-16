@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text('ຜົນໂຄວິດ-19'),
+        title: Text('ຜົນໂຄວິດ-19',style: TextStyle(color: Colors.blue),),
         centerTitle: true,
       ),
       body: Column(
@@ -35,8 +35,8 @@ class _HomePageState extends State<HomePage> {
             decoration: BoxDecoration(
               color: Colors.blue,
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(50),
-                bottomRight: Radius.circular(50),
+                bottomLeft: Radius.circular(0),
+                bottomRight: Radius.circular(0),
               ),
             ),
             child: AnimatedSwitcher(
