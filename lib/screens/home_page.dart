@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Text('ຜົນໂຄວິດ-19',style: TextStyle(color: Colors.blue),),
         centerTitle: true,
       ),
